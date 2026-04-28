@@ -3,130 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wonka Delights - Rabat Agdal</title>
+    <title>Wonka Delights - L'Univers Joyeux de l'Agdal</title>
+    
+    <!-- Scripts -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Fonts et Icônes -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        :root {
+            --wonka-purple: #7e22ce;
+            --wonka-pink: #ec4899;
+            --wonka-gold: #f59e0b;
+        }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth;
+            background-color: #fdf2f8; 
+        }
+        .font-joy { font-family: 'Fredoka', sans-serif; }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
         .gradient-text {
             background: linear-gradient(to right, #f59e0b, #ec4899, #7e22ce);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        @keyframes bounce-custom {
-            0%, 100% { transform: translateY(0) rotate(-12deg); }
-            50% { transform: translateY(-10px) rotate(-12deg); }
+
+        .card-hover:hover {
+            transform: scale(1.03) rotate(1deg);
+            transition: all 0.3s ease;
         }
-        .animate-wonka-bounce { animation: bounce-custom 3s ease-in-out infinite; }
+
+        .animate-spin-slow {
+            animation: spin 8s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fdf2f8; }
+        ::-webkit-scrollbar-thumb { background: #7e22ce; border-radius: 10px; }
     </style>
 </head>
-<body class="bg-[#fcf8f1] text-[#3d2b1f] selection:bg-purple-200">
+<body>
+    <div id="root"></div>
 
-    <nav class="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-purple-100 px-6 py-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-purple-700 rounded-xl flex items-center justify-center text-white font-bold italic shadow-lg">W</div>
-                <div class="flex flex-col leading-none">
-                    <span class="font-black text-xl tracking-tighter text-purple-900 uppercase">Wonka Delights</span>
-                    <span class="text-[10px] font-bold text-amber-600 tracking-widest uppercase">Rabat • Agdal</span>
-                </div>
-            </div>
-            <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-purple-900/70">
-                <a href="#" class="hover:text-purple-600 transition-colors">Boutique</a>
-                <a href="#" class="hover:text-purple-600 transition-colors">Contact</a>
-            </div>
-            <div class="bg-purple-50 px-4 py-2 rounded-full text-purple-700 font-bold text-sm border border-purple-100">
-                +212 5 37 72 91 34
-            </div>
-        </div>
-    </nav>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
 
-    <header class="relative pt-40 pb-20 px-6 text-center">
-        <div class="inline-flex items-center gap-2 bg-white border border-amber-200 px-4 py-1.5 rounded-full text-amber-700 text-xs font-black mb-8 shadow-sm uppercase tracking-widest">
-            <span>✨ Pâtisserie Créative à Rabat</span>
-        </div>
-        <h1 class="text-5xl md:text-8xl font-black mb-6 leading-none tracking-tight text-purple-950">
-            DÉCOUVREZ <br> L'ÉCLAT <span class="gradient-text">WONKA</span>
-        </h1>
-        <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 mb-10 font-medium">
-            Des créations uniques qui fusionnent l'imaginaire de Willy Wonka avec le raffinement de la pâtisserie moderne au cœur de l'Agdal.
-        </p>
-        <a href="https://wa.me/212537729134" class="inline-flex items-center gap-2 px-10 py-5 bg-purple-700 text-white rounded-2xl font-black text-lg shadow-xl shadow-purple-200 hover:bg-purple-800 transition-all transform hover:-translate-y-1">
-            COMMANDER VIA WHATSAPP
-        </a>
-    </header>
+        // Composant pour les icônes Lucide
+        const Icon = ({ name, size = 24, className = "" }) => {
+            useEffect(() => { 
+                if (window.lucide) window.lucide.createIcons(); 
+            }, [name]);
+            return <i data-lucide={name} style={{ width: size, height: size }} className={className}></i>;
+        };
 
-    <section class="py-20 px-6 bg-white rounded-t-[3rem] md:rounded-t-[6rem] shadow-2xl relative z-20">
-        <div class="container mx-auto">
-            <h2 class="text-3xl md:text-5xl font-black text-center mb-16 uppercase tracking-tighter text-purple-950">La Carte des Délices</h2>
+        const App = () => {
+            const [activeCategory, setActiveCategory] = useState('Tous');
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <div class="bg-amber-50 border border-white rounded-[2.5rem] p-5 shadow-sm hover:shadow-2xl transition-all group">
-                    <div class="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-md">
-                        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" alt="Gâteau Chocolat">
-                    </div>
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-[10px] font-black text-amber-700 uppercase tracking-widest">Cake Design</span>
-                        <span class="text-lg font-black text-purple-800">650 MAD</span>
-                    </div>
-                    <h3 class="text-xl font-black text-purple-950 mb-4">L'Impérial Chocolat</h3>
-                    <button class="w-full py-4 bg-white border-2 border-purple-100 text-purple-700 font-black rounded-2xl hover:bg-purple-700 hover:text-white transition-all italic uppercase text-sm">Ajouter au panier</button>
-                </div>
+            const categories = ['Tous', 'Cake Design', 'Cupcakes', 'Magnums'];
+            
+            const products = [
+                { id: 1, name: "Le Palais de Sucre", category: "Cake Design", price: "750 MAD", img: "https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&q=80&w=600", color: "bg-purple-100" },
+                { id: 2, name: "Nuage de Vanille", category: "Cupcakes", price: "30 MAD", img: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&q=80&w=600", color: "bg-pink-100" },
+                { id: 3, name: "Magnum Or Pur", category: "Magnums", price: "40 MAD", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600", color: "bg-yellow-100" },
+                { id: 4, name: "Forêt Enchantée", category: "Cake Design", price: "900 MAD", img: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=80&w=600", color: "bg-emerald-100" },
+                { id: 5, name: "Éclat de Myrtille", category: "Cupcakes", price: "30 MAD", img: "https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&q=80&w=600", color: "bg-blue-100" },
+                { id: 6, name: "Magnum Pistache Magique", category: "Magnums", price: "40 MAD", img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&q=80&w=600", color: "bg-emerald-100" },
+                { id: 7, name: "Rêve de Velours", category: "Cake Design", price: "800 MAD", img: "https://images.unsplash.com/photo-1616031037011-087000171abe?auto=format&fit=crop&q=80&w=600", color: "bg-rose-100" },
+                { id: 8, name: "Cupcake Arc-en-Ciel", category: "Cupcakes", price: "35 MAD", img: "https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&q=80&w=600", color: "bg-indigo-100" },
+                { id: 9, name: "Magnum Fraise Givrée", category: "Magnums", price: "40 MAD", img: "https://images.unsplash.com/photo-1543157145-f78c636d023d?auto=format&fit=crop&q=80&w=600", color: "bg-red-100" }
+            ];
 
-                <div class="bg-emerald-50 border border-white rounded-[2.5rem] p-5 shadow-sm hover:shadow-2xl transition-all group">
-                    <div class="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-md">
-                        <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" alt="Forêt Enchantée">
-                    </div>
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-[10px] font-black text-emerald-700 uppercase tracking-widest">Cake Design</span>
-                        <span class="text-lg font-black text-purple-800">900 MAD</span>
-                    </div>
-                    <h3 class="text-xl font-black text-purple-950 mb-4">Forêt Enchantée</h3>
-                    <button class="w-full py-4 bg-white border-2 border-purple-100 text-purple-700 font-black rounded-2xl hover:bg-purple-700 hover:text-white transition-all italic uppercase text-sm">Ajouter au panier</button>
-                </div>
+            const filteredProducts = activeCategory === 'Tous' ? products : products.filter(p => p.category === activeCategory);
 
-                <div class="bg-rose-50 border border-white rounded-[2.5rem] p-5 shadow-sm hover:shadow-2xl transition-all group">
-                    <div class="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-md">
-                        <img src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" alt="Cupcake Velours">
-                    </div>
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-[10px] font-black text-rose-600 uppercase tracking-widest">Cupcakes</span>
-                        <span class="text-lg font-black text-purple-800">25 MAD</span>
-                    </div>
-                    <h3 class="text-xl font-black text-purple-950 mb-4">Velours Rose</h3>
-                    <button class="w-full py-4 bg-white border-2 border-purple-100 text-purple-700 font-black rounded-2xl hover:bg-purple-700 hover:text-white transition-all italic uppercase text-sm">Ajouter au panier</button>
-                </div>
-            </div>
-        </div>
-    </section>
+            return (
+                <div className="min-h-screen">
+                    
+                    {/* Navigation */}
+                    <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-purple-100 px-6 py-4 shadow-sm">
+                        <div className="container mx-auto flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <div className="w-12 h-12 bg-purple-700 rounded-2xl flex items-center justify-center text-white font-black italic shadow-lg transform -rotate-3">W</div>
+                                <div className="flex flex-col leading-none">
+                                    <span className="font-black text-2xl tracking-tighter text-purple-900 uppercase">Wonka Delights</span>
+                                    <span className="text-[10px] font-bold text-pink-600 tracking-widest uppercase">Rabat • Agdal</span>
+                                </div>
+                            </div>
+                            <div className="hidden md:flex gap-10 text-sm font-black uppercase tracking-widest text-purple-950/70">
+                                <a href="#" className="hover:text-pink-500 transition-colors">Accueil</a>
+                                <a href="#creations" className="hover:text-pink-500 transition-colors">La Carte</a>
+                                <a href="#apropos" className="hover:text-pink-500 transition-colors">À Propos</a>
+                                <a href="#contact" className="hover:text-pink-500 transition-colors">Contact</a>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <div className="hidden sm:block text-purple-900 font-bold text-sm">+212 5 37 72 91 34</div>
+                                <button className="bg-gradient-to-tr from-purple-600 to-pink-500 p-3 rounded-2xl text-white shadow-xl hover:scale-110 transition-transform">
+                                    <Icon name="shopping-bag" size={20} />
+                                </button>
+                            </div>
+                        </div>
+                    </nav>
 
-    <section class="py-24 px-6 bg-purple-950 text-white overflow-hidden">
-        <div class="container mx-auto flex flex-col lg:flex-row items-center gap-16">
-            <div class="lg:w-1/2 space-y-8">
-                <h2 class="text-4xl md:text-6xl font-black leading-none uppercase italic text-amber-400">WONKA À RABAT</h2>
-                <div class="space-y-6">
-                    <div class="flex gap-4 items-start">
-                        <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center shrink-0 text-amber-400">📍</div>
-                        <p class="text-purple-100">Quartier Agdal, Rue Oued Sebou, Rabat 10090, Maroc</p>
-                    </div>
-                    <div class="flex gap-4 items-start">
-                        <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center shrink-0 text-amber-400">📞</div>
-                        <p class="text-purple-100">+212 5 37 72 91 34</p>
-                    </div>
-                </div>
-            </div>
-            <div class="lg:w-1/2 relative">
-                <div class="rounded-[4rem] overflow-hidden border-8 border-white/5 rotate-2 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
-                </div>
-                <div class="absolute -top-6 -right-6 w-24 h-24 bg-amber-400 rounded-full flex items-center justify-center animate-wonka-bounce text-black font-black text-xs text-center shadow-xl">QUALITÉ<br>PREMIUM</div>
-            </div>
-        </div>
-    </section>
+                    {/* Hero Section */}
+                    <header className="relative pt-48 pb-32 px-6 overflow-hidden">
+                        <div className="absolute top-20 left-10 w-32 h-32 bg-pink-200 rounded-full blur-3xl opacity-50 floating"></div>
+                        <div className="absolute bottom-10 right-10 w-48 h-48 bg-purple-200 rounded-full blur-3xl opacity-50 floating" style={{animationDelay: '1s'}}></div>
+                        
+                        <div className="container mx-auto text-center relative z-10">
+                            <div className="inline-flex items-center gap-2 bg-white/50 backdrop-blur border border-pink-200 px-6 py-2 rounded-full text-pink-600 text-sm font-black mb-10 shadow-sm animate-bounce">
+                                <Icon name="sparkles" size={16} />
+                                <span className="uppercase tracking-widest">Le bonheur se cuisine ici</span>
+                            </div>
+                            <h1 className="text-6xl md:text-9xl font-joy font-black mb-8 leading-none tracking-tight text-purple-950 uppercase">
+                                <span className="text-pink-500 italic">SUCRÉ</span>, COLORÉ, <br />
+                                <span className="gradient-text">MAGIQUE !</span>
+                            </h1>
+                            <p className="max-w-2xl mx-auto text-xl md:text-2xl text-purple-900/60 mb-12 font-medium leading-relaxed">
+                                Entrez dans un monde où chaque gâteau est un vœu et chaque cupcake est une fête !
+                            </p>
+                            <div className="flex flex-wrap justify-center gap-6">
+                                <a href="https://wa.me/212537729134" className="px-12 py-6 bg-gradient-to-r from-purple-700 to-pink-600 text-white rounded-[2rem] font-black text-xl shadow-2xl hover:shadow-pink-200 hover:-translate-y-2 transition-all flex items-center gap-3">
+                                    <Icon name="message-circle" size={24} />
+                                    COMMANDER VIA WHATSAPP
+                                </a>
+                            </div>
+                        </div>
+                    </header>
 
-    <footer class="bg-white py-10 border-t border-gray-100 text-center">
-        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">© 2024 WONKA DELIGHTS RABAT</p>
-    </footer>
+                    {/* À Propos de Nous */}
+                    <section id="apropos" className="py-24 bg-white rounded-[4rem] shadow-inner mx-6 relative overflow-hidden">
+                        <div className="container mx-auto flex flex-col lg:flex-row items-center gap-20 px-6">
+                            <div className="lg:w-1/2 relative">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?auto=format&fit=crop&q=80&w=400" className="rounded-[3rem] rotate-3 shadow-xl hover:rotate-0 transition-all duration-500" alt="Atelier Wonka" />
+                                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=400" className="rounded-[3rem] -rotate-6 mt-12 shadow-xl hover:rotate-0 transition-all duration-500" alt="Créations Wonka" />
+                                </div>
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div className="bg-amber-400 text-white w-32 h-32 rounded-full flex items-center justify-center font-black text-center text-sm shadow-2xl animate-spin-slow">À PROPOS DE NOUS</div>
+                                </div>
+                            </div>
+                            <div className="lg:w-1/2 space-y-8 text-center lg:text-left">
+                                <h2 className="text-5xl font-joy font-black text-purple-950 uppercase italic tracking-tighter">Notre Histoire Magique</h2>
+                                <p className="text-lg text-gray-600 leading-relaxed">
+                                    Tout a commencé par un rêve : ramener la folie de la chocolaterie de Willy Wonka dans les rues ensoleillées de l'Agdal. Chez <span className="font-bold text-purple-700 underline decoration-pink-500 decoration-4">Wonka Delights</span>, nous ne faisons pas que des gâteaux. Nous créons des capsules de joie !
+                                </p>
+                                <p className="text-lg text-gray-600 leading-relaxed">
+                                    Chaque ingrédient est sélectionné pour son pouvoir de faire sourire. Pas de chimie, juste une pincée d'imagination pure et beaucoup de passion marocaine.
+                                </p>
+                                <div className="flex justify-center lg:justify-start gap-8">
+                                    <div className="text-center">
+                                        <div className="text-4xl font-black text-pink-500">100%</div>
+                                        <div className="text-xs font-bold uppercase text-gray-400 tracking-widest">Artisanal</div>
+                                    </div>
+                                    <div className="text-center">
+                                        <div className="text-4xl font-black text-purple-500">∞</div>
+                                        <div className="text-xs font-bold uppercase text-gray-400 tracking-widest">Imagination</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
+                    {/* Catalogue */}
+                    <section id="creations" className="py-32 px-6">
+                        <div className="container mx-auto">
+                            <div className="flex flex-col items-center mb-20 text-center">
+                                <h2 className="text-5xl md:text-7xl font-joy font-black mb-8 uppercase text-purple-950 italic">Le Menu des Merveilles</h2>
+                                <div className="flex flex-wrap justify-center gap-4">
+                                    {categories.map(cat => (
+                                        <button 
+                                            key={cat}
+                                            onClick={() => setActiveCategory(cat)}
+                                            className={`px-10 py-4 rounded-full font-black text-sm uppercase tracking-widest transition-all ${activeCategory === cat ? 'bg-purple-700 text-white shadow-2xl scale-110' : 'bg-white text-purple-900 border-2 border-purple-50 hover:bg-purple-50'}`}
+                                        >
+                                            {cat}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                                {filteredProducts.map(product => (
+                                    <div key={product.id} className="group card-hover">
+                                        <div className={`${product.color} p-6 rounded-[3rem] shadow-lg border-b-8 border-r-8 border-purple-200 transition-all`}>
+                                            <div className="relative aspect-square rounded-[2rem] overflow-hidden mb-6 shadow-md border-4 border-white">
+                                                <img src={product.img} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" />
+                                                <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-4 py-2 rounded-xl text-xs font-black text-purple-900 uppercase shadow-sm">
+                                                    {product.category}
+                                                </div>
+                                            </div>
+                                            <div className="flex justify-between items-end">
+                                                <div>
+                                                    <h3 className="text-2xl font-black text-purple-950 leading-none mb-1 uppercase tracking-tighter">{product.name}</h3>
+                                                    <p className="text-sm font-bold text-purple-400 italic">Recette Secrète de Wonka</p>
+                                                </div>
+                                                <span className="text-2xl font-black text-pink-600 shrink-0 ml-2">{product.price}</span>
+                                            </div>
+                                            <button className="w-full mt-8 py-5 bg-white rounded-2xl text-purple-700 font-black shadow-inner border-2 border-purple-50 group-hover:bg-purple-700 group-hover:text-white group-hover:border-purple-700 transition-all flex items-center justify-center gap-2">
+                                                <Icon name="heart" size={18} />
+                                                JE VEUX CELUI-LÀ !
+                                            </button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer - Horaires & Social */}
+                    <footer id="contact" className="bg-purple-950 text-white rounded-t-[5rem] pt-32 pb-16 px-6">
+                        <div className="container mx-auto">
+                            <div className="grid md:grid-cols-3 gap-20 mb-24">
+                                
+                                {/* Info Gérale */}
+                                <div className="space-y-8 text-center md:text-left">
+                                    <div className="flex items-center justify-center md:justify-start gap-3">
+                                        <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center text-purple-950 font-black text-3xl italic shadow-lg">W</div>
+                                        <span className="text-3xl font-joy font-black tracking-tighter uppercase italic">Wonka Delights</span>
+                                    </div>
+                                    <p className="text-purple-200 text-lg">Votre destination gourmande au cœur de l'Agdal. Livraison disponible partout à Rabat !</p>
+                                    <div className="flex justify-center md:justify-start gap-4">
+                                        <a href="#" className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-pink-500 hover:-translate-y-2 transition-all shadow-xl border border-white/10">
+                                            <Icon name="instagram" size={28} />
+                                        </a>
+                                        <a href="#" className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-blue-600 hover:-translate-y-2 transition-all shadow-xl border border-white/10">
+                                            <Icon name="facebook" size={28} />
+                                        </a>
+                                        <a href="https://wa.me/212537729134" className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center hover:bg-green-500 hover:-translate-y-2 transition-all shadow-xl border border-white/10">
+                                            <Icon name="phone" size={28} />
+                                        </a>
+                                    </div>
+                                </div>
+
+                                {/* Horaires */}
+                                <div className="bg-white/5 border border-white/10 p-10 rounded-[3rem] shadow-2xl transform rotate-2">
+                                    <h4 className="font-joy font-black text-2xl mb-8 text-amber-400 uppercase tracking-widest italic text-center">Horaires de Magie</h4>
+                                    <ul className="space-y-6 font-bold text-purple-100">
+                                        <li className="flex justify-between border-b border-white/5 pb-2">
+                                            <span>Mardi - Samedi</span>
+                                            <span className="text-pink-400">10h00 - 19h30</span>
+                                        </li>
+                                        <li className="flex justify-between border-b border-white/5 pb-2">
+                                            <span>Dimanche</span>
+                                            <span className="text-pink-400">11h00 - 17h00</span>
+                                        </li>
+                                        <li className="flex justify-between text-white opacity-40 italic">
+                                            <span>Lundi</span>
+                                            <span>Fermé pour invention</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                {/* Localisation */}
+                                <div className="space-y-8 text-center md:text-left">
+                                    <h4 className="font-joy font-black text-2xl text-amber-400 uppercase italic text-center md:text-left">Nous trouver</h4>
+                                    <div className="flex gap-4 items-start justify-center md:justify-start">
+                                        <Icon name="map-pin" className="text-pink-500 shrink-0" size={32} />
+                                        <p className="text-xl font-bold leading-relaxed">
+                                            Quartier Agdal, Rue Oued Sebou,<br />
+                                            Rabat 10090, Maroc
+                                        </p>
+                                    </div>
+                                    <div className="p-6 bg-pink-500 rounded-3xl shadow-xl -rotate-1">
+                                        <p className="font-black text-center text-sm uppercase">Venez nous voir, c'est bien meilleur en vrai ! ✨</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black uppercase tracking-[0.4em] text-purple-400">
+                                <p>© 2024 WONKA DELIGHTS RABAT. FAIT AVEC AMOUR ET SUCRE.</p>
+                                <div className="flex gap-10">
+                                    <a href="#" className="hover:text-white transition-colors">Confidentialité</a>
+                                    <a href="#" className="hover:text-white transition-colors">Tickets d'Or</a>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+
+                    {/* Pied de page avec icônes de réseaux sociaux supplémentaires */}
+                    <footer class="bg-white py-12 border-t border-gray-100 text-center">
+                        <div class="flex justify-center gap-8 mb-8 text-purple-900">
+                             <a href="#" className="hover:text-pink-500 transition-colors transform hover:scale-110"><Icon name="instagram" size={32} /></a>
+                             <a href="#" className="hover:text-blue-600 transition-colors transform hover:scale-110"><Icon name="facebook" size={32} /></a>
+                             <a href="https://wa.me/212537729134" className="hover:text-green-500 transition-colors transform hover:scale-110"><Icon name="phone" size={32} /></a>
+                        </div>
+                        <p class="text-[10px] font-black uppercase tracking-[0.4em] text-gray-400">© 2024 WONKA DELIGHTS RABAT. TOUS DROITS RÉSERVÉS.</p>
+                    </footer>
+
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
 </body>
 </html>

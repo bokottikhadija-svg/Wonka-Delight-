@@ -5,65 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wonka Delights - Rabat Agdal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         .gradient-text {
             background: linear-gradient(to right, #f59e0b, #ec4899, #7e22ce);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        @keyframes bounce-custom {
+            0%, 100% { transform: translateY(0) rotate(-12deg); }
+            50% { transform: translateY(-10px) rotate(-12deg); }
+        }
+        .animate-wonka-bounce { animation: bounce-custom 3s ease-in-out infinite; }
     </style>
 </head>
-<body class="bg-[#fcf8f1] text-[#3d2b1f]">
+<body class="bg-[#fcf8f1] text-[#3d2b1f] selection:bg-purple-200">
 
-    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-purple-100 p-4">
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/70 backdrop-blur-md border-b border-purple-100 px-6 py-4">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 bg-purple-700 rounded-xl flex items-center justify-center text-white font-bold italic shadow-lg">W</div>
-                <div>
-                    <div class="font-black text-xl text-purple-900 uppercase leading-none">Wonka Delights</div>
-                    <div class="text-[10px] font-bold text-amber-600 uppercase tracking-widest">Rabat • Agdal</div>
+                <div class="flex flex-col leading-none">
+                    <span class="font-black text-xl tracking-tighter text-purple-900 uppercase">Wonka Delights</span>
+                    <span class="text-[10px] font-bold text-amber-600 tracking-widest uppercase">Rabat • Agdal</span>
                 </div>
             </div>
-            <div class="text-purple-900 font-bold text-sm">+212 5 37 72 91 34</div>
+            <div class="hidden md:flex gap-8 text-sm font-bold uppercase tracking-widest text-purple-900/70">
+                <a href="#" class="hover:text-purple-600 transition-colors">Boutique</a>
+                <a href="#" class="hover:text-purple-600 transition-colors">Contact</a>
+            </div>
+            <div class="bg-purple-50 px-4 py-2 rounded-full text-purple-700 font-bold text-sm border border-purple-100">
+                +212 5 37 72 91 34
+            </div>
         </div>
     </nav>
 
-    <header class="pt-40 pb-20 px-6 text-center">
-        <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight text-purple-950">
-            DÉCOUVREZ L'ÉCLAT <br> <span class="gradient-text">WONKA</span>
+    <header class="relative pt-40 pb-20 px-6 text-center">
+        <div class="inline-flex items-center gap-2 bg-white border border-amber-200 px-4 py-1.5 rounded-full text-amber-700 text-xs font-black mb-8 shadow-sm uppercase tracking-widest">
+            <span>✨ Pâtisserie Créative à Rabat</span>
+        </div>
+        <h1 class="text-5xl md:text-8xl font-black mb-6 leading-none tracking-tight text-purple-950">
+            DÉCOUVREZ <br> L'ÉCLAT <span class="gradient-text">WONKA</span>
         </h1>
-        <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-10">
-            Pâtisserie créative au Quartier Agdal, Rue Oued Sebou.
+        <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-600 mb-10 font-medium">
+            Des créations uniques qui fusionnent l'imaginaire de Willy Wonka avec le raffinement de la pâtisserie moderne au cœur de l'Agdal.
         </p>
-        <a href="https://wa.me/212537729134" class="inline-block px-10 py-5 bg-purple-700 text-white rounded-2xl font-black shadow-xl hover:bg-purple-800 transition-all">
+        <a href="https://wa.me/212537729134" class="inline-flex items-center gap-2 px-10 py-5 bg-purple-700 text-white rounded-2xl font-black text-lg shadow-xl shadow-purple-200 hover:bg-purple-800 transition-all transform hover:-translate-y-1">
             COMMANDER VIA WHATSAPP
         </a>
     </header>
 
-    <section class="py-10 container mx-auto px-6 grid md:grid-cols-3 gap-8">
-        <div class="bg-white p-4 rounded-[2.5rem] shadow-xl border border-purple-50">
-            <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=80&w=600" class="rounded-[2rem] mb-4 w-full h-64 object-cover">
-            <h3 class="font-black text-xl">Forêt Enchantée</h3>
-            <p class="text-purple-700 font-black">900 MAD</p>
-        </div>
-        <div class="bg-white p-4 rounded-[2.5rem] shadow-xl border border-purple-50">
-            <img src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&q=80&w=600" class="rounded-[2rem] mb-4 w-full h-64 object-cover">
-            <h3 class="font-black text-xl">Velours Rose</h3>
-            <p class="text-purple-700 font-black">25 MAD</p>
-        </div>
-        <div class="bg-white p-4 rounded-[2.5rem] shadow-xl border border-purple-50">
-            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" class="rounded-[2rem] mb-4 w-full h-64 object-cover">
-            <h3 class="font-black text-xl">Magnum Signature</h3>
-            <p class="text-purple-700 font-black">35 MAD</p>
+    <section class="py-20 px-6 bg-white rounded-t-[3rem] md:rounded-t-[6rem] shadow-2xl relative z-20">
+        <div class="container mx-auto">
+            <h2 class="text-3xl md:text-5xl font-black text-center mb-16 uppercase tracking-tighter text-purple-950">La Carte des Délices</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="bg-amber-50 border border-white rounded-[2.5rem] p-5 shadow-sm hover:shadow-2xl transition-all group">
+                    <div class="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-md">
+                        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" alt="Gâteau Chocolat">
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-black text-amber-700 uppercase tracking-widest">Cake Design</span>
+                        <span class="text-lg font-black text-purple-800">650 MAD</span>
+                    </div>
+                    <h3 class="text-xl font-black text-purple-950 mb-4">L'Impérial Chocolat</h3>
+                    <button class="w-full py-4 bg-white border-2 border-purple-100 text-purple-700 font-black rounded-2xl hover:bg-purple-700 hover:text-white transition-all italic uppercase text-sm">Ajouter au panier</button>
+                </div>
+
+                <div class="bg-emerald-50 border border-white rounded-[2.5rem] p-5 shadow-sm hover:shadow-2xl transition-all group">
+                    <div class="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-md">
+                        <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" alt="Forêt Enchantée">
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-black text-emerald-700 uppercase tracking-widest">Cake Design</span>
+                        <span class="text-lg font-black text-purple-800">900 MAD</span>
+                    </div>
+                    <h3 class="text-xl font-black text-purple-950 mb-4">Forêt Enchantée</h3>
+                    <button class="w-full py-4 bg-white border-2 border-purple-100 text-purple-700 font-black rounded-2xl hover:bg-purple-700 hover:text-white transition-all italic uppercase text-sm">Ajouter au panier</button>
+                </div>
+
+                <div class="bg-rose-50 border border-white rounded-[2.5rem] p-5 shadow-sm hover:shadow-2xl transition-all group">
+                    <div class="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-md">
+                        <img src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" alt="Cupcake Velours">
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-[10px] font-black text-rose-600 uppercase tracking-widest">Cupcakes</span>
+                        <span class="text-lg font-black text-purple-800">25 MAD</span>
+                    </div>
+                    <h3 class="text-xl font-black text-purple-950 mb-4">Velours Rose</h3>
+                    <button class="w-full py-4 bg-white border-2 border-purple-100 text-purple-700 font-black rounded-2xl hover:bg-purple-700 hover:text-white transition-all italic uppercase text-sm">Ajouter au panier</button>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="bg-purple-950 text-white p-12 mt-20 rounded-t-[3rem] text-center">
-        <p class="font-bold mb-2 uppercase tracking-widest">Nous trouver</p>
-        <p class="text-purple-200 mb-6 italic">Quartier Agdal, Rue Oued Sebou, Rabat 10090, Maroc</p>
-        <p class="text-sm opacity-50">© 2024 Wonka Delights Rabat</p>
+    <section class="py-24 px-6 bg-purple-950 text-white overflow-hidden">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <div class="lg:w-1/2 space-y-8">
+                <h2 class="text-4xl md:text-6xl font-black leading-none uppercase italic text-amber-400">WONKA À RABAT</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center shrink-0 text-amber-400">📍</div>
+                        <p class="text-purple-100">Quartier Agdal, Rue Oued Sebou, Rabat 10090, Maroc</p>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                        <div class="w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center shrink-0 text-amber-400">📞</div>
+                        <p class="text-purple-100">+212 5 37 72 91 34</p>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-1/2 relative">
+                <div class="rounded-[4rem] overflow-hidden border-8 border-white/5 rotate-2 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -top-6 -right-6 w-24 h-24 bg-amber-400 rounded-full flex items-center justify-center animate-wonka-bounce text-black font-black text-xs text-center shadow-xl">QUALITÉ<br>PREMIUM</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-white py-10 border-t border-gray-100 text-center">
+        <p class="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">© 2024 WONKA DELIGHTS RABAT</p>
     </footer>
 
 </body>
